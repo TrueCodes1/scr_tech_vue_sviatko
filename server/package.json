@@ -1,14 +1,14 @@
 {
-  "name": "scr_tech_vue",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "git-update": "git add . && git commit -m 'updated' && git push origin main && clear"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "vue": "^3.2.37"
+    "node": "^18.4.0"
   }
 }
