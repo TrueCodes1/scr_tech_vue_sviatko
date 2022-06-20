@@ -1,26 +1,21 @@
-<script setup lang="ts">
-
-  import { RouterLink, RouterView } from 'vue-router'
-
-</script>
 
 <template>
 
   <div>
     
-    <nav>
-
-      <router-link to="/home" > Home </router-link>
-      <router-link to="/articles" > Blog </router-link>
-      <router-link to="/articles/351" > Specific Article </router-link>
-
-    </nav>
-
-    <router-view />
+    <Navbar :routes="RoutesProp" />
 
   </div>
 
 </template>
+
+<script setup lang="ts">
+
+  import { RouterLink, RouterView } from 'vue-router'
+  import Navbar from './components/General/Navbar.vue'
+  import RoutesProp from './interfaces/Routes'
+
+</script>
 
 <style>
 
