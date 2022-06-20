@@ -2,8 +2,8 @@
 <template>
 
   <div>
-    
-    <Navbar :routes="RoutesProp" />
+
+    <router-view />
 
   </div>
 

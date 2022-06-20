@@ -1,12 +1,23 @@
 <template>
     
-    <nav class="navbar bg-light fixed-top">
+    <div>
 
-      <router-link v-for="route in routes" :key="route.id" :to="route.path" > {{ route.text }} </router-link>
+        <nav class="navbar navbar-expand-lg bg-light fixed-top d-flex flex-row align-items-center justify-content-end">
 
-      <router-view />
+            <ul class="navbar-nav d-flex flex-row justify-content-end align-items-end w-100">
 
-    </nav>
+                <li class="nav-item" v-for="route in routes" :key="route.id" >
+
+                    <router-link :to="route.path" class="nav-link" > {{ route.text }} </router-link>
+
+                </li>
+
+            </ul>
+            
+
+        </nav>
+
+    </div>
 
 </template>
 
