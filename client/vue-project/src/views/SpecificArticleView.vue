@@ -4,10 +4,13 @@
     
     <Navbar :routes="RoutesProp" />
 
-    <h1 class="mt-5">
-        Specific Article
-    </h1>
+    <main>
 
+        <h1 class="mt-5">
+            Spec. article
+        </h1>
+
+    </main>
   </div>
 
 </template>

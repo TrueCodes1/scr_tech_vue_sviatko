@@ -4,10 +4,13 @@
     
     <Navbar :routes="RoutesProp" />
 
-    <h1 class="mt-5">
-        Home
-    </h1>
+    <main>
 
+        <h1 class="mt-5">
+            Home
+        </h1>
+
+    </main>
   </div>
 
 </template>
