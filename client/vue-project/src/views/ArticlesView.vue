@@ -4,16 +4,17 @@
     
     <Navbar :routes="RoutesProp" />
 
-    <main class="articles-list mx-auto d-flex flex-column align-items-center justify-content-start">
+    <main class="mx-auto d-flex flex-column align-items-center justify-content-start">
 
         <div class="top-gallery d-flex flex-row align-items-stretch justify-content-stretch">
 
-            <div class="card w-25" v-for="image in topGalleryFetched" :key="image.id">
+            <div class="card gallery-card w-25 d-flex flex-column align-items-center justify-content-center" v-for="image in topGalleryFetched" :key="image.id">
             
                 <img :src="image.imgs.regular" class="card-img" alt="...">
-                <div class="card-img-overlay">
+                <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end pb-5">
+                    <p class="card-type">{{ image.type }}</p>
                     <h5 class="card-title">{{ image.name }}}</h5>
-                    <a href="#" class="btn">
+                    <a href="#" class="gallery-btn btn btn-outline-light">
                         Read More
                     </a>
                 </div>
@@ -116,9 +117,9 @@
                     
                     fetch(UNSPLASH_ENDPOINT.toString())
                         .then(response => { return response.json() })
-                        .then(images => {
+                        .then(images2 => {
 
-                            images.forEach((image: any) => {
+                            images2.forEach((image: any) => {
 
                                 // let specificArticleKey = articleKeys[counter];
                                 
@@ -286,28 +287,57 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap')
 
     $primaryColor: purple
-
+   
+    *
+        border-radius: 0
+    
     main
-        width: 65%
+        width: 100%
         margin-top: 130px
         font-family: 'Poppins'
         text-align: center
+
+    .top-gallery,
+    .gallery-card,
+    .card-img
+        min-height: 500px
+        max-height: 500px
+
+    .gallery-card
+        min-height: 100%
+
+    .card-img 
+        padding: 5px
+
+    .card-img-overlay
+        color: #fff
+
+    .gallery-btn
+        border-width: 2px
+        border-radius: 0
+
+    .articles-list
+        width: 65%
+        margin-top: 60px
 
     .column 
         flex: 33.33%
         max-width: 33.33%
         padding: 5px
+        border-radius: 0
         
-    .image
+    .card-img-top
         display: block
         width: 100%
         height: auto
         padding: 3px
+        border-radius: 0
     
     .card
         height: fit-content
         border: none
         margin-bottom: 10px
+        border-radius: 0
 
     .card-type,
     .card-text,
