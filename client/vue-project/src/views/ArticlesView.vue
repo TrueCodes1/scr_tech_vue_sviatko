@@ -33,7 +33,7 @@
                         <p class="card-type">
                             {{ blog.type }}
                         </p>
-                        <h5 class="card-title">
+                        <h5 class="card-title" id="gallery-card-title">
                             {{ blog.name }}
                         </h5>
                         <div class="line"></div>
@@ -311,6 +311,9 @@
 
     .card-img-overlay
         color: #fff
+
+    #gallery-card-title
+        margin-bottom: 20px
 
     .gallery-btn
         border-width: 2px
