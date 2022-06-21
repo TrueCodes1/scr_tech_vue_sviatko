@@ -2,9 +2,9 @@
         
   <div>
     
-    <Navbar :routes="Routes" />
+    <Navbar :routes="RoutesProp" />
 
-    <h1>
+    <h1 class="mt-5">
         Specific Article
     </h1>
 
@@ -26,11 +26,11 @@
 
         },
         setup() {
-            
-            const Routes = RoutesProp
 
             return {
-                Routes
+
+                RoutesProp
+
             }
 
         }

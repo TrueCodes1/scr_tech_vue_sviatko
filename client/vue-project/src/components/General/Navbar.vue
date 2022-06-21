@@ -37,8 +37,6 @@
 
         },
         setup(props) {
-            
-            console.log(props.routes)
 
             return {
 
