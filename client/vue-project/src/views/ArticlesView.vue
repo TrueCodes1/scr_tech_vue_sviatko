@@ -11,6 +11,9 @@
             <div class="card" v-for="blog in column" :key="blog.id"> 
                 <img class="card-img-top" alt="" :src="blog.imgs.regular">
                 <div class="card-body">
+                    <p class="card-type">
+                        {{ blog.type }}
+                    </p>
                     <h5 class="card-title">
                         {{ blog.name }}
                     </h5>
@@ -38,7 +41,6 @@
     import RoutesProp from '../interfaces/Routes'
     import axios, { AxiosError } from 'axios'
     const UNSPLASH_CLIENT_ID: String = '2Bwn0PvYJW2Czd2YggvBcL5ALqmGFdWYr0nVVyWxBZE'
-    import loadBlog from '../functions/LoadBlog'
     //@ts-ignore
     import articles from '../jsons/articles.json'
 
@@ -198,7 +200,7 @@
                                 }
 
                             }
-
+                            
                             columnsBlogsFetched.value = columnsBlogs
 
                         })
@@ -216,34 +218,18 @@
     
     })
 
-    const fetchData = async () => {
-        
-                const articles: any = await ( await axios.get('http://localhost:3000/src/jsons/articles.json')).data
-                console.log('articles' + articles)
-                return {
-                    '1': {
-                        '1': {
-                            'name': 'sasfaf',
-                            'text': 'asdasf'
-                        },
-                        '2': {
-                            'name': 'sasfaf',
-                            'text': 'asdasf'
-                        }
-                    }
-                }
-
-    }
-
 </script>
 
 <style lang="sass">
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;500&display=swap')
 
     $primaryColor: purple
 
     main
         width: 60%
         margin-top: 130px
+        font-family: 'Poppins'
 
     .column 
         flex: 33.33%
@@ -258,6 +244,12 @@
     
     .card
         height: fit-content
+
+    .card-title
+        font-weight: 500
+
+    .card-text
+        font-weight: 200
 
 </style>
 
