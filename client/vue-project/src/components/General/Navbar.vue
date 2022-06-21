@@ -2,7 +2,7 @@
     
     <div>
 
-        <nav class="navbar navbar-expand-lg bg-light fixed-top d-flex flex-row align-items-center justify-content-end">
+        <nav class="navbar navbar-expand-lg fixed-top d-flex flex-row align-items-center justify-content-end">
 
             <ul class="navbar-nav d-flex flex-row justify-content-end align-items-end w-100">
 
@@ -49,8 +49,14 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="sass">
 
-
+    .navbar
+        padding-right: 165px
+        padding-top: 30px
+        background: #fff
+    
+    .nav-link
+        color: #000
 
 </style>

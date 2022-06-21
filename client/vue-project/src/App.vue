@@ -17,8 +17,13 @@
 
 </script>
 
-<style>
+<style lang="sass">
 
+  *  
+    -ms-overflow-style: none
+    scrollbar-width: none
 
+  ::webkit-scrollbar
+    dsiaply: none
 
 </style>

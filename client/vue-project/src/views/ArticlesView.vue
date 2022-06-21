@@ -4,26 +4,47 @@
     
     <Navbar :routes="RoutesProp" />
 
-    <main class="articles-list mx-auto d-flex felx-row align-items-start justify-content-stretch">
+    <main class="articles-list mx-auto d-flex flex-column align-items-center justify-content-start">
 
-        <div class="column" v-for="column in columnsBlogsFetched" :key="column"> 
+        <div class="top-gallery d-flex flex-row align-items-stretch justify-content-stretch">
+
+            <div class="card w-25" v-for="image in topGalleryFetched" :key="image.id">
             
-            <div class="card" v-for="blog in column" :key="blog.id"> 
-                <img class="card-img-top" alt="" :src="blog.imgs.regular">
-                <div class="card-body">
-                    <p class="card-type">
-                        {{ blog.type }}
-                    </p>
-                    <h5 class="card-title">
-                        {{ blog.name }}
-                    </h5>
-                    <p class="card-text">
-                        {{ blog.text }}
-                    </p>
-                    <a href="#" class="btn btn-primary">
-                        read more
+                <img :src="image.imgs.regular" class="card-img" alt="...">
+                <div class="card-img-overlay">
+                    <h5 class="card-title">{{ image.name }}}</h5>
+                    <a href="#" class="btn">
+                        Read More
                     </a>
                 </div>
+
+            </div>
+
+        </div>
+
+        <div class="articles-list mx-auto d-flex felx-row align-items-start justify-content-stretch">
+    
+            <div class="column" v-for="column in columnsBlogsFetched" :key="column"> 
+                
+                <div class="card" v-for="blog in column" :key="blog.id"> 
+                    <img class="card-img-top" alt="" :src="blog.imgs.regular">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-start">
+                        <p class="card-type">
+                            {{ blog.type }}
+                        </p>
+                        <h5 class="card-title">
+                            {{ blog.name }}
+                        </h5>
+                        <div class="line"></div>
+                        <p class="card-text">
+                            {{ blog.text }}
+                        </p>
+                        <a href="#" class="btn">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+                
             </div>
             
         </div>
@@ -43,6 +64,8 @@
     const UNSPLASH_CLIENT_ID: String = '2Bwn0PvYJW2Czd2YggvBcL5ALqmGFdWYr0nVVyWxBZE'
     //@ts-ignore
     import articles from '../jsons/articles.json'
+    //@ts-ignore
+    import gallery from '../jsons/gallery.json'
 
     export default defineComponent({
         name: 'ArticlesView',
@@ -54,6 +77,7 @@
         setup() {
 
             const columnsBlogsFetched: any = ref(null)
+            const topGalleryFetched: any = ref(null)
 
             let columnsBlogs: any = {
                 '1': {},
@@ -61,10 +85,16 @@
                 '3': {}
             }
             
+            let topGallery: any = {
+                0: {},
+                1: {},
+                2: {},
+                3: {}
+            }
+            
             let UNSPLASH_ENDPOINT = new URL(`https://api.unsplash.com/photos/?client_id=${UNSPLASH_CLIENT_ID}`)
 
             let counter = 0;
-            let articleKeys = Object.keys(articles);
 
             fetch(UNSPLASH_ENDPOINT.toString())
                 .then(response => { return response.json() })
@@ -200,17 +230,48 @@
                                 }
 
                             }
-                            
+
                             columnsBlogsFetched.value = columnsBlogs
 
                         })
                 
                 })
 
+            fetch(UNSPLASH_ENDPOINT.toString())
+                .then(response => { return response.json() })
+                .then(images => {
+
+                    let counter = 0
+
+                    images.forEach((image: any) => {
+
+                        if (counter < 4) {
+
+                            gallery[counter]['imgs'] = image['urls'];
+                            gallery[counter]['id'] = image['id'];
+
+                            topGallery[counter] = gallery[counter]
+                            
+                            counter++
+
+                        }
+                        
+                    })
+
+                })
+                .then(() => {
+
+                    topGalleryFetched.value = topGallery
+
+                })
+            
+
+
             return {
 
                 RoutesProp,
-                columnsBlogsFetched
+                columnsBlogsFetched,
+                topGalleryFetched
 
             }
 
@@ -222,19 +283,20 @@
 
 <style lang="sass">
 
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;500&display=swap')
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap')
 
     $primaryColor: purple
 
     main
-        width: 60%
+        width: 65%
         margin-top: 130px
         font-family: 'Poppins'
+        text-align: center
 
     .column 
         flex: 33.33%
         max-width: 33.33%
-        padding: 1px
+        padding: 5px
         
     .image
         display: block
@@ -244,12 +306,31 @@
     
     .card
         height: fit-content
+        border: none
+        margin-bottom: 10px
+
+    .card-type,
+    .card-text,
+    .btn
+        font-weight: 400
+        opacity: .5
+        font-size: 12px
 
     .card-title
         font-weight: 500
+        font-size: 26px
+        margin-top: -10px
+
+    .line 
+        border-bottom: 2px solid #000
+        opacity: .25
+        min-width: 25%
+        max-width: 25%
+        margin: 10px 0 20px 0
 
     .card-text
-        font-weight: 200
+        line-height: 1.3em
+
 
 </style>
 

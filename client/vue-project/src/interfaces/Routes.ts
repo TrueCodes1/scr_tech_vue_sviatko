@@ -4,30 +4,38 @@ import type Routes from './RoutesInterface'
 
 const homeRoute: Route = {
     
-    text: 'Home',
+    text: 'HOME',
     path: '/home'
+
+}
+
+const aboutRoute: Route = {
+
+    text: 'ABOUT',
+    path: '/'
 
 }
 
 const articlesRoute: Route = {
 
-    text: 'Blog',
+    text: 'BLOG',
     path: '/articles'
 
 }
 
-const specificArticleRoute: Route = {
+const contactRoute: Route = {
 
-    text: 'Article',
-    path: '/articles/asd'
+    text: 'CONTACT',
+    path: '/'
 
 }
 
 const RoutesProp: Routes = {
 
     homeRoute: homeRoute,
+    aboutRoute: aboutRoute,
     articlesRoute: articlesRoute,
-    specificArticleRoute: specificArticleRoute
+    contactRoute: contactRoute
 
 }
 
