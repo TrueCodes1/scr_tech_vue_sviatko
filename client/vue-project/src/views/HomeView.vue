@@ -6,7 +6,52 @@
 
     <main class="mx-auto d-flex flex-column align-items-center justify-content-start">
 
-        <div class="top-gallery d-flex flex-row align-items-stretch justify-content-stretch">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+
+                <div class="carousel-item active" v-for="image in firstFromGallery" :key="image.id" data-bs-interval="10000">
+
+                    <img :src="image.imgs.regular" class="d-block w-100 carousel-image" alt="...">
+
+                    <div class="carousel-caption d-md-block">
+
+                        <h5>{{ image.name }}</h5>
+                        <p>{{ image.text }}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="carousel-item" v-for="image in topGalleryFetchedMobile" :key="image.id" data-bs-interval="2000">
+
+                    <img :src="image.imgs.regular" class="d-block w-100 carousel-image" alt="...">
+
+                    <div class="carousel-caption d-md-block">
+
+                        <h5>{{ image.name }}</h5>
+                        <p>{{ image.text }}</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+            </button>
+        </div>
+
+        <div class="top-gallery flex-row align-items-stretch justify-content-stretch">
 
             <div class="card gallery-card w-25 d-flex flex-column align-items-center justify-content-center" v-for="image in topGalleryFetched" :key="image.id">
             
@@ -23,7 +68,7 @@
 
         </div>
 
-        <div class="articles-list mx-auto d-flex felx-row align-items-start justify-content-stretch">
+        <div class="articles-list mx-auto d-flex">
     
             <div class="column" v-for="column in columnsBlogsFetched" :key="column"> 
                 
@@ -81,6 +126,8 @@
 
             const columnsBlogsFetched: any = ref(null)
             const topGalleryFetched: any = ref(null)
+            const topGalleryFetchedMobile: any = ref(null)
+            const firstFromGallery: any = ref(null)
 
             let columnsBlogs: any = {
                 '1': {},
@@ -265,6 +312,14 @@
                 .then(() => {
 
                     topGalleryFetched.value = topGallery
+                    topGalleryFetchedMobile.value = {
+                        '1': topGallery[1],
+                        '2': topGallery[2],
+                        '3': topGallery[3]
+                    }
+                    firstFromGallery.value = {
+                        '1': topGallery[0]
+                    }
 
                 })
             
@@ -274,7 +329,9 @@
 
                 RoutesProp,
                 columnsBlogsFetched,
-                topGalleryFetched
+                topGalleryFetched,
+                topGalleryFetchedMobile,
+                firstFromGallery
 
             }
 
@@ -283,3 +340,67 @@
     })
 
 </script>
+
+<style scoped lang="sass">
+
+    @import '../sass/General/variables.sass'
+
+    html
+        overflow-x: hidden
+
+    .carousel
+        display: none
+    
+    .top-gallery
+        display: none
+    
+    @media (max-width: $breakpointLaptop - 1px) 
+        
+        .carousel
+            display: flex
+        .carousel,
+        .carousel-item
+            visibility: visible  
+            min-height: 300px
+            max-height: 300px
+            width: 100vw
+            overflow: hidden
+
+        .carousel-image
+            min-width: 100vw
+            max-wdith: 100vw
+        
+        .carousel-caption
+            position: absolute
+            padding: 10px
+            bottom: 0
+            left: 0
+            width: 100%
+            color: #fff
+
+        .carousel-caption h5 
+            font-weight: 600
+            font-size: 26px
+        
+        .carousel-caption p
+            font-weight: 400
+            font-size: 12px
+            line-height: 1.2em
+        
+        .articles-list
+            flex-direction: column 
+            align-items: center 
+            justify-content: flex-start
+        
+
+    @media (min-width: $breakpointLaptop)
+        .top-gallery
+            display: flex
+            
+        .articles-list
+            flex-direction: row 
+            align-items: flex-start 
+            justify-content: stretch
+        
+
+</style>

@@ -19,7 +19,7 @@
 
         </nav> -->
 
-        <nav class="navbar navbar-expand-lg fixed-top d-flex flex-row align-items-center justify-content-end">
+        <nav class="navbar navbar-expand-lg fixed-top d-flex flex-row align-items-center">
 
             <a class="navbar-brand" href="#">Navbar</a>
 
@@ -105,7 +105,11 @@
     @media (max-width: 992px) 
         
         .navbar
-            color: red
+            background: #fff
+            justify-content: space-between
+
+        .navbar-brand
+            margin-left: 20px
 
         .navbar-toggler,
         .navbar-toggler:hover,
@@ -115,6 +119,7 @@
             display: flex
             height: 40px
             width: 40px
+            margin-right: 20px
             border-radius: 0
             border: 0px solid black
             outline: 0
@@ -152,6 +157,7 @@
         .navbar
             padding: 30px 165px 0 40px
             background: #fff
+            justify-content: flex-end
 
         .navbar-toggler
             display: none

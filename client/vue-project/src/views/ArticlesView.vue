@@ -250,57 +250,13 @@
 <style lang="sass">
 
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap')
-
-    $primaryColor: purple
+    @import '../sass/General/variables.sass'
    
-    *
-        border-radius: 0
-    
-    main
-        width: 100%
-        margin-top: 130px
-        font-family: 'Poppins'
-        text-align: center
-
-    .top-gallery,
-    .gallery-card,
-    .card-img
-        min-height: 500px
-        max-height: 500px
-
-    .gallery-card
-        min-height: 100%
-
-    .card-img 
-        padding: 5px
-
-    .card-img-overlay
-        color: #fff
-
-    #gallery-card-title
-        margin-bottom: 20px
-
-    .gallery-btn
-        border-width: 2px
-        border-radius: 0
-
-    .articles-list
-        width: 65%
-        margin-top: 60px
-
-    .column 
-        flex: 33.33%
-        max-width: 33.33%
-        padding: 5px
-        border-radius: 0
-        
     .card-img-top
         display: block
-        width: 100%
-        height: auto
         padding: 3px
         border-radius: 0
-    
+        
     .card
         height: fit-content
         border: none
@@ -325,10 +281,64 @@
         min-width: 25%
         max-width: 25%
         margin: 10px 0 20px 0
+    
+    @media (max-width: $breakpointLaptop - 1px) 
+        main
+            width: 80%
+            text-align: center
+        
+        .articles-list
+            margin-top: 50px
 
-    .card-text
-        line-height: 1.3em
 
+    @media (min-width: $breakpointLaptop)
+        *
+            border-radius: 0
+    
+        main
+            width: 100%
+            margin-top: 130px
+            font-family: 'Poppins'
+            text-align: center
+
+        .top-gallery,
+        .gallery-card,
+        .card-img
+            min-height: 500px
+            max-height: 500px
+
+        .gallery-card
+            min-height: 100%
+
+        .card-img 
+            padding: 5px
+
+        .card-img-overlay
+            color: #fff
+
+        #gallery-card-title
+            margin-bottom: 20px
+
+        .gallery-btn
+            border-width: 2px
+            border-radius: 0
+
+        .articles-list
+            width: 65%
+            margin-top: 60px
+
+        .column 
+            flex: 33.33%
+            max-width: 33.33%
+            padding: 5px
+            border-radius: 0
+         
+        .card-text
+            line-height: 1.3em
+
+        .card-img-top    
+            width: 100%
+            height: auto
 
 </style>
 
