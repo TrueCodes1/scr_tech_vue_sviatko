@@ -12,9 +12,9 @@
 
                 <div class="carousel-item active" v-for="image in firstFromGallery" :key="image.id" data-bs-interval="10000">
 
-                    <img :src="image.imgs.regular" class="d-block w-100 carousel-image" alt="...">
+                    <!-- <img :src="image.imgs.regular" class="d-block w-100 carousel-image" alt="..."> -->
 
-                    <div class="carousel-caption d-md-block">
+                    <div class="carousel-caption d-flex" :style="`background-image: url(${image.imgs.regular})`">
 
                         <h5>{{ image.name }}</h5>
                         <p>{{ image.text }}</p>
@@ -25,9 +25,9 @@
 
                 <div class="carousel-item" v-for="image in topGalleryFetchedMobile" :key="image.id" data-bs-interval="2000">
 
-                    <img :src="image.imgs.regular" class="d-block w-100 carousel-image" alt="...">
+                    <!-- <img :src="image.imgs.regular" class="d-block w-100 carousel-image" alt="..."> -->
 
-                    <div class="carousel-caption d-md-block">
+                    <div class="carousel-caption d-flex" :style="`background-image: url(${image.imgs.regular})`">
 
                         <h5>{{ image.name }}</h5>
                         <p>{{ image.text }}</p>
@@ -53,10 +53,10 @@
 
         <div class="top-gallery flex-row align-items-stretch justify-content-stretch">
 
-            <div class="card gallery-card w-25 d-flex flex-column align-items-center justify-content-center" v-for="image in topGalleryFetched" :key="image.id">
+            <div class="card gallery-card d-flex flex-column align-items-center justify-content-center w-25" v-for="image in topGalleryFetched" :key="image.id">
             
-                <img :src="image.imgs.regular" class="card-img" alt="...">
-                <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end pb-5">
+                <!-- <img :src="image.imgs.regular" class="card-img-gallery" alt="..."> -->
+                <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end pb-5" :style="`background-image: url(${image.imgs.regular})`">
                     <p class="card-type">{{ image.type }}</p>
                     <h5 class="card-title">{{ image.name }}</h5>
                     <a href="#" class="gallery-btn btn btn-outline-light">
@@ -85,7 +85,7 @@
                         <p class="card-text">
                             {{ blog.text }}
                         </p>
-                        <a href="#" class="btn">
+                        <a @click="openArticle(blog.id)" class="btn">
                             Read More
                         </a>
                     </div>
@@ -335,6 +335,21 @@
 
             }
 
+        },
+        methods: {
+
+            openArticle(specificId: string) {
+
+                let specificArticle = articles.filter((article: any) => {
+                    return article.id == specificId 
+                })[0]
+
+                localStorage.setItem('currentArticle', JSON.stringify(specificArticle))
+
+                window.location.assign(`/blog/${specificId}`)
+
+            }
+
         }
 
     })
@@ -350,7 +365,11 @@
 
     .carousel
         display: none
+        margin-top: 100px
     
+    .carousel-caption p
+        max-width: 500px
+
     .top-gallery
         display: none
     
@@ -369,6 +388,9 @@
         .carousel-image
             min-width: 100vw
             max-wdith: 100vw
+            bottom: 0
+            top: 0
+            margin: auto
         
         .carousel-caption
             position: absolute
@@ -376,7 +398,14 @@
             bottom: 0
             left: 0
             width: 100%
+            height: 100%
             color: #fff
+            background-position: center
+            background-size: cover
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: flex-end
 
         .carousel-caption h5 
             font-weight: 600
@@ -393,14 +422,57 @@
             justify-content: flex-start
         
 
-    @media (min-width: $breakpointLaptop)
-        .top-gallery
-            display: flex
-            
+    @media (min-width: $breakpointTablet)
         .articles-list
             flex-direction: row 
             align-items: flex-start 
             justify-content: stretch
+        .carousel-caption
+            position: absolute
+            padding: 10px
+            bottom: 0
+            left: 0
+            width: 100%
+            height: 100%
+            color: #fff
+            background-position: center
+            background-size: cover
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: flex-end
         
+
+    @media (min-width: $breakpointLaptop)
+        .top-gallery
+            display: flex
+            width: 100%
+            min-height: 300px
+            max-height: 500px
+            
+        .gallery-card
+            min-height: 100%
+            width: 100%
+            min-height: 450px
+            max-height: 450px
+            margin: 0 3px
+
+        .card-img 
+            padding: 5px
+
+        .card-img-overlay
+            color: #fff
+            background-position: center
+            background-size: cover
+
+        #gallery-card-title
+            margin-bottom: 20px
+
+        .gallery-btn
+            border-width: 2px
+            border-radius: 0
+        
+        .card-img-gallery 
+            width: 100%
 
 </style>

@@ -89,39 +89,152 @@
 
 <style scoped lang="sass">
 
+    @import '../sass/General/variables.sass'
     $headerBg: #fdefe6
 
-    .top-header 
-        min-height: 250px
-        max-height: 250px
-        padding-left: 20%
-        font-size: 30px
-        font-weight: 600
-        color: #000
-        background: $headerBg
+    @media (max-width: $breakpointMobile - 1px)
 
-    .blog
-        min-width: 50%
-        max-width: 50%
-        margin-top: 40px
+        .top-header 
+            min-height: 150px
+            max-height: 150px
+            margin-top: 100px
+            padding-left: 10%
+            font-size: 26px
+            font-weight: 600
+            color: #000
+            background: $headerBg
 
-    .img-wrapper
-        max-height: 400px
-        overflow: hidden
-        margin-top: 20px
+        .blog
+            min-width: 85%
+            max-width: 85%
+            margin-top: 40px
 
-    p
-        text-align: justify
-        margin: 20px 0
-        font-size: 15px
-        opacity: .75
-    
-    .highlighted
-        background: $headerBg
-    
-    .highlighted-text
-        padding: 20px
-        font-weight: 500
-        opacity: 1
+        .img-wrapper
+            max-height: 400px
+            overflow: hidden
+            margin-top: 20px
+
+        p
+            text-align: justify
+            margin: 20px 0
+            font-size: 15px
+            opacity: .75
+        
+        .highlighted
+            background: $headerBg
+        
+        .highlighted-text
+            padding: 20px
+            font-weight: 500
+            opacity: 1
+
+
+    @media (min-width: $breakpointMobile) and (max-width: $breakpointTablet - 1px)
+
+        .top-header 
+            min-height: 150px
+            max-height: 150px
+            margin-top: 100px
+            padding-left: 10%
+            font-size: 26px
+            font-weight: 600
+            color: #000
+            background: $headerBg
+
+        .blog
+            min-width: 85%
+            max-width: 85%
+            margin-top: 40px
+
+        .img-wrapper
+            max-height: 400px
+            overflow: hidden
+            margin-top: 20px
+
+        p
+            text-align: justify
+            margin: 20px 0
+            font-size: 15px
+            opacity: .75
+        
+        .highlighted
+            background: $headerBg
+        
+        .highlighted-text
+            padding: 20px
+            font-weight: 500
+            opacity: 1
+
+    @media (min-width: $breakpointTablet) and (max-width: $breakpointLaptop - 1px)
+
+        .top-header 
+            min-height: 150px
+            max-height: 150px
+            margin-top: 100px
+            padding-left: 10%
+            font-size: 26px
+            font-weight: 600
+            color: #000
+            background: $headerBg
+
+        .blog
+            min-width: 75%
+            max-width: 75%
+            margin-top: 40px
+
+        .img-wrapper
+            max-height: 400px
+            overflow: hidden
+            margin-top: 20px
+
+        p
+            text-align: justify
+            margin: 20px 0
+            font-size: 15px
+            opacity: .75
+        
+        .highlighted
+            background: $headerBg
+        
+        .highlighted-text
+            padding: 20px
+            font-weight: 500
+            opacity: 1
+
+    @media (min-width: $breakpointLaptop) 
+
+        .top-header 
+            min-height: 250px
+            max-height: 250px
+            padding-left: 20%
+            font-size: 30px
+            font-weight: 600
+            color: #000
+            background: $headerBg
+
+        .blog
+            min-width: 50%
+            max-width: 50%
+            margin-top: 40px
+
+        .img-wrapper
+            max-height: 400px
+            overflow: hidden
+            margin-top: 20px
+
+        p
+            text-align: justify
+            margin: 20px 0
+            font-size: 15px
+            opacity: .75
+        
+        .highlighted
+            background: $headerBg
+        
+        .highlighted-text
+            padding: 20px
+            font-weight: 500
+            opacity: 1
+
 
 </style>

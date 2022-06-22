@@ -6,7 +6,7 @@
 
     <main class="mx-auto d-flex flex-column align-items-center justify-content-start">
 
-        <div class="articles-list mx-auto d-flex felx-row align-items-start justify-content-stretch">
+        <div class="articles-list mx-auto d-flex">
     
             <div class="column" v-for="column in columnsBlogsFetched" :key="column"> 
                 
@@ -23,7 +23,7 @@
                         <p class="card-text">
                             {{ blog.text }}
                         </p>
-                        <a @click="abc(blog.id)" class="btn">
+                        <a @click="openArticle(blog.id)" class="btn">
                             Read More
                         </a>
                     </div>
@@ -213,11 +213,6 @@
                 
                 })
 
-            const openArticle = computed(() => {
-                console.log('workiiing')
-                console.log(articles)
-            })
-
             return {
 
                 RoutesProp,
@@ -228,7 +223,7 @@
         },
         methods: {
 
-            abc(specificId: string) {
+            openArticle(specificId: string) {
 
                 let specificArticle = articles.filter((article: any) => {
                     return article.id == specificId 
@@ -268,11 +263,9 @@
     .btn
         font-weight: 400
         opacity: .5
-        font-size: 12px
 
     .card-title
         font-weight: 500
-        font-size: 26px
         margin-top: -10px
 
     .line 
@@ -282,50 +275,46 @@
         max-width: 25%
         margin: 10px 0 20px 0
     
-    @media (max-width: $breakpointLaptop - 1px) 
+    @media (max-width: $breakpointTablet - 1px) 
         main
             width: 80%
             text-align: center
         
         .articles-list
-            margin-top: 50px
+            margin-top: 100px
+            flex-direction: column 
+            align-items: center 
+            justify-content: flex-start
+
+        .card-type,
+        .card-text,
+        .btn
+            font-size: 10px
+        
+        .card-title
+            font-size: 20px
 
 
-    @media (min-width: $breakpointLaptop)
+    @media (min-width: $breakpointTablet)
         *
             border-radius: 0
     
         main
             width: 100%
-            margin-top: 130px
+            margin-top: 0
             font-family: 'Poppins'
             text-align: center
 
-        .top-gallery,
-        .gallery-card,
         .card-img
             min-height: 500px
             max-height: 500px
 
-        .gallery-card
-            min-height: 100%
-
-        .card-img 
-            padding: 5px
-
-        .card-img-overlay
-            color: #fff
-
-        #gallery-card-title
-            margin-bottom: 20px
-
-        .gallery-btn
-            border-width: 2px
-            border-radius: 0
-
         .articles-list
             width: 65%
             margin-top: 60px
+            flex-direction: row 
+            align-items: flex-start 
+            justify-content: stretch
 
         .column 
             flex: 33.33%
@@ -335,10 +324,29 @@
          
         .card-text
             line-height: 1.3em
+        
+        .card-type,
+        .card-text,
+        .btn
+            font-size: 10px
+        
+        .card-title
+            font-size: 22px
 
         .card-img-top    
             width: 100%
             height: auto
+
+    @media (min-width: $breakpointLaptop)
+
+        
+        .card-type,
+        .card-text,
+        .btn
+            font-size: 12px
+        
+        .card-title
+            font-size: 26px
 
 </style>
 

@@ -21,7 +21,9 @@
 
         <nav class="navbar navbar-expand-lg fixed-top d-flex flex-row align-items-center">
 
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">
+                <img src="../../assets/logo.svg" class="branding-logo" />
+            </a>
 
             <button id="toggler-btn" class="navbar-toggler flex-column align-items-center justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 
@@ -102,6 +104,11 @@
         box-shadow: none
         font-size: 20px
     
+    @media (max-width: $breakpointMobile)
+
+        .branding-logo
+            max-height: 40px
+
     @media (max-width: 992px) 
         
         .navbar
