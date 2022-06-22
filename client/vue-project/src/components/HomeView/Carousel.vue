@@ -43,6 +43,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
 
             </button>
+
         </div>
 
 
@@ -51,9 +52,6 @@
 <script lang="ts">
 
     import { defineComponent, reactive } from '@vue/runtime-core'
-    import { RouterLink, RouterView } from 'vue-router'
-    import $ from 'jquery'
-    import type Route from '../../interfaces/RouteInterface'
 
     export default defineComponent({
 
@@ -62,14 +60,6 @@
 
             firstFromGallery: Object,
             topGalleryFetchedMobile: Object
-
-        },
-        setup(props) {
-
-            return {
-
-
-            }
 
         }
 
@@ -80,6 +70,70 @@
 <style scoped lang="sass">
 
     @import '../../sass/General/variables.sass'
+    @import '../../sass/General/fonts.sass'
 
+    html
+        overflow-x: hidden
+
+    .carousel
+        display: none
+        margin-top: 100px
+    
+    .carousel-caption p
+        max-width: 500px
+
+    @media (max-width: $breakpointLaptop - 1px) 
+        
+        .carousel
+            display: flex
+        .carousel,
+        .carousel-item
+            visibility: visible  
+            min-height: 300px
+            max-height: 300px
+            width: 100vw
+            overflow: hidden
+
+        .carousel-caption
+            position: absolute
+            padding: 10px
+            bottom: 0
+            left: 0
+            width: 100%
+            height: 100%
+            color: $primary
+            background-position: center
+            background-size: cover
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: flex-end
+
+        .carousel-caption h5 
+            font-weight: 600
+            font-size: $giant
+        
+        .carousel-caption p
+            font-weight: 400
+            font-size: $small
+            line-height: 1.2em
+        
+
+    @media (min-width: $breakpointTablet)
+        .carousel-caption
+            position: absolute
+            padding: 10px
+            bottom: 0
+            left: 0
+            width: 100%
+            height: 100%
+            color: $primary
+            background-position: center
+            background-size: cover
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: flex-end
+        
 
 </style>

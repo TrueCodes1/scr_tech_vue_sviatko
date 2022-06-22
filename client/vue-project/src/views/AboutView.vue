@@ -6,7 +6,7 @@
 
     <main>
 
-        <h1 class="mt-5">
+        <h1>
             About
         </h1>
 
@@ -18,7 +18,11 @@
 <script lang="ts">
 
     import { defineComponent } from 'vue'
+
+    // IMPORTING COMPONENTS
     import Navbar from '../components/General/Navbar.vue'
+
+    // IMPORTING OBJECTS
     import RoutesProp from '../interfaces/Routes'
 
     export default defineComponent({
@@ -42,3 +46,13 @@
     })
 
 </script>
+
+<style lang="sass">
+    
+    h1
+        position: absolute
+        left: 0
+        width: 100%
+        margin-top: 200px
+
+</style>

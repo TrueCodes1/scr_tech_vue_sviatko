@@ -1,23 +1,6 @@
 <template>
     
     <div>
-<!-- 
-        <nav class="navbar navbar-expand-lg fixed-top d-flex flex-row align-items-center justify-content-end">
-
-            <ul class="navbar-nav d-flex flex-row justify-content-end align-items-end w-100">
-
-                <li class="nav-item d-flex flex-row align-items-center justify-content-start" v-for="route in routes" :key="route.id" >
-
-                    <router-link :to="route.path" class="nav-link" > {{ route.text }} </router-link>
-
-                    <button v-if="route.text == 'HOME'" class="btn dropdown-toggle p-0"></button>
-
-                </li>
-
-            </ul>
-            
-
-        </nav> -->
 
         <nav class="navbar navbar-expand-lg fixed-top d-flex flex-row align-items-center">
 
@@ -58,9 +41,6 @@
 <script lang="ts">
 
     import { defineComponent, reactive } from '@vue/runtime-core'
-    import { RouterLink, RouterView } from 'vue-router'
-    import $ from 'jquery'
-    import type Route from '../../interfaces/RouteInterface'
 
     export default defineComponent({
 
@@ -68,14 +48,6 @@
         props: {
 
             routes: Object
-
-        },
-        setup(props) {
-
-            return {
-
-
-            }
 
         }
 
@@ -86,23 +58,24 @@
 <style scoped lang="sass">
 
     @import '../../sass/General/variables.sass'
+    @import '../../sass/General/fonts.sass'
 
     html
         overflow-x: hidden
     .nav-link
-                color: #000
+        color: $secondary
     .dropdown-toggle,
     .dropdown-toggle:hover,
     .dropdown-toggle:focus,
     .dropdown-toggle:active,
     .dropdown-toggle:visited
         margin-right: 10px
-        color: #000
+        color: $secondary
         opacity: 1
         border: none
         outline: none
         box-shadow: none
-        font-size: 20px
+        font-size: $semilarge
     
     @media (max-width: $breakpointMobile)
 
@@ -112,7 +85,7 @@
     @media (max-width: 992px) 
         
         .navbar
-            background: #fff
+            background: $primary
             justify-content: space-between
 
         .navbar-brand
@@ -128,17 +101,17 @@
             width: 40px
             margin-right: 20px
             border-radius: 0
-            border: 0px solid black
+            border: 0px solid transparent
             outline: 0
             box-shadow: none
 
         .navbar-toggler-burger
-            border: 2px solid #000
+            border: 2px solid $secondary
             height: 5px
             width: 30px
             margin: 2px
             border-radius: 5px
-            background: #000  
+            background: $secondary  
             opacity: .5   
 
         .navbar-collapse
@@ -149,21 +122,20 @@
             flex-direction: column  
             align-items: center
             justify-content: flex-start
-            background: #fff   
+            background: $primary
             padding-bottom: 20px 
         .dropdown-toggle,
         .dropdown-toggle:hover,
         .dropdown-toggle:focus,
         .dropdown-toggle:active,
         .dropdown-toggle:visited
-            margin-right: 0
-            margin-left: 10px
+            margin-right: 0 0 0 10px
 
     @media (min-width: 992px)
         
         .navbar
             padding: 30px 165px 0 40px
-            background: #fff
+            background: $primary
             justify-content: flex-end
 
         .navbar-toggler

@@ -6,32 +6,7 @@
 
     <main class="mx-auto d-flex flex-column align-items-center justify-content-start">
 
-        <div class="articles-list mx-auto d-flex">
-    
-            <div class="column" v-for="column in columnsBlogsFetched" :key="column"> 
-                
-                <div class="card" v-for="blog in column" :key="blog.id"> 
-                    <img class="card-img-top" alt="" :src="blog.imgs.regular">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-start">
-                        <p class="card-type">
-                            {{ blog.type }}
-                        </p>
-                        <h5 class="card-title" id="gallery-card-title">
-                            {{ blog.name }}
-                        </h5>
-                        <div class="line"></div>
-                        <p class="card-text">
-                            {{ blog.text }}
-                        </p>
-                        <a @click="openArticle(blog.id)" class="btn">
-                            Read More
-                        </a>
-                    </div>
-                </div>
-                
-            </div>
-            
-        </div>
+        <ArticlesList :columnsBlogsFetched="columnsBlogsFetched" :openArticle="openArticle" />
 
     </main>
 
@@ -42,21 +17,25 @@
 <script lang="ts">
 
     import { defineComponent, onMounted, reactive, ref, computed } from 'vue'
+
+    // IMPORTING COMPONENTS
     import Navbar from '../components/General/Navbar.vue'
+    import ArticlesList from '../components/HomeView/ArticlesList.vue'
+
+    // IMPORTING OBJECTS
     import RoutesProp from '../interfaces/Routes'
-    import axios, { AxiosError } from 'axios'
+
+    // IMPORTING OTHER NECCESSARY FILES
     const UNSPLASH_CLIENT_ID: String = '2Bwn0PvYJW2Czd2YggvBcL5ALqmGFdWYr0nVVyWxBZE'
+
     //@ts-ignore
     import articles from '../jsons/articles.json'
-    //@ts-ignore
-    import currentArticle from '../functions/currentArticle.js'
 
     export default defineComponent({
         name: 'ArticlesView',
         components: {
-
-            Navbar
-
+            Navbar,
+            ArticlesList
         },
         setup() {
 
@@ -213,17 +192,7 @@
                 
                 })
 
-            return {
-
-                RoutesProp,
-                columnsBlogsFetched
-
-            }
-
-        },
-        methods: {
-
-            openArticle(specificId: string) {
+            const openArticle = (specificId: string) => {
 
                 let specificArticle = articles.filter((article: any) => {
                     return article.id == specificId 
@@ -232,6 +201,14 @@
                 localStorage.setItem('currentArticle', JSON.stringify(specificArticle))
 
                 window.location.assign(`/blog/${specificId}`)
+
+            }
+
+            return {
+
+                RoutesProp,
+                columnsBlogsFetched,
+                openArticle
 
             }
 
@@ -311,7 +288,7 @@
 
         .articles-list
             width: 65%
-            margin-top: 60px
+            margin-top: 120px
             flex-direction: row 
             align-items: flex-start 
             justify-content: stretch
