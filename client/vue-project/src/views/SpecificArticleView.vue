@@ -4,13 +4,40 @@
     
     <Navbar :routes="RoutesProp" />
 
-    <main>
+    <main class="mx-auto w-100">
 
-        <h1 class="mt-5">
-            Spec. article
-        </h1>
+        <div class="top-header d-flex flex-row align-items-center justify-content-start">{{ currentArticle.name }}</div>
+
+        <div class="blog mx-auto">
+            
+            <div class="img-wrapper d-flex align-items-center justify-content-center">
+        
+                <img :src="currentArticle.imgs.regular" alt="" class="top-img w-100">
+            
+            </div>
+
+            <p class="body-text">{{ currentArticle.longText }}</p>
+
+            <p class="body-text">{{ currentArticle.longText }}</p>
+
+            <div class="highlighted">
+
+                <p class="body-text highlighted-text"><i>{{ currentArticle.longText.substring(0, currentArticle.longText.length / 2) }}</i></p>
+
+            </div>
+            
+            <div class="img-wrapper d-flex align-items-center justify-content-center">
+        
+                <img :src="currentArticle.imgs.regular" alt="" class="top-img w-100">
+            
+            </div>
+
+            <p class="body-text">{{ currentArticle.longText }}</p>
+
+        </div>
 
     </main>
+
   </div>
 
 </template>
@@ -20,6 +47,8 @@
     import { defineComponent } from 'vue'
     import Navbar from '../components/General/Navbar.vue'
     import RoutesProp from '../interfaces/Routes'
+    //@ts-ignore
+    import currentArticle from '../functions/currentArticle.js'
 
     export default defineComponent({
         name: 'SpecificArticleView',
@@ -30,9 +59,26 @@
         },
         setup() {
 
+            let currentArticle: any = localStorage.getItem('currentArticle')
+            currentArticle = JSON.parse(currentArticle)
+
+            currentArticle = {
+
+                name: currentArticle['name'],
+                text: currentArticle['text'],
+                longText: currentArticle['long-text'],
+                id: currentArticle['id'],
+                imgs: currentArticle['imgs'],
+                type: currentArticle['type']
+
+            }
+
+            console.log(currentArticle)
+
             return {
 
-                RoutesProp
+                RoutesProp,
+                currentArticle
 
             }
 
@@ -40,3 +86,42 @@
     })
 
 </script>
+
+<style scoped lang="sass">
+
+    $headerBg: #fdefe6
+
+    .top-header 
+        min-height: 250px
+        max-height: 250px
+        padding-left: 20%
+        font-size: 30px
+        font-weight: 600
+        color: #000
+        background: $headerBg
+
+    .blog
+        min-width: 50%
+        max-width: 50%
+        margin-top: 40px
+
+    .img-wrapper
+        max-height: 400px
+        overflow: hidden
+        margin-top: 20px
+
+    p
+        text-align: justify
+        margin: 20px 0
+        font-size: 15px
+        opacity: .75
+    
+    .highlighted
+        background: $headerBg
+    
+    .highlighted-text
+        padding: 20px
+        font-weight: 500
+        opacity: 1
+
+</style>

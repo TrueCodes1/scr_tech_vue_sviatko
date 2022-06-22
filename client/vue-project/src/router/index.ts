@@ -6,6 +6,10 @@ import HomeView from '../views/HomeView.vue';
 import ArticlesView from '../views/ArticlesView.vue';
 //@ts-ignore
 import SpecificArticleView from '../views/SpecificArticleView.vue';
+//@ts-ignore
+import ContactView from '../views/ContactView.vue';
+//@ts-ignore
+import AboutView from '../views/AboutView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,15 +25,26 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/articles',
+      path: '/blog',
       name: 'articles',
       component: ArticlesView
     },
     {
-      path: '/articles/:id',
+      path: '/blog/:id',
       name: 'specific_article',
       component: SpecificArticleView
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: ContactView
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutView
     }
+
   ]
 })
 

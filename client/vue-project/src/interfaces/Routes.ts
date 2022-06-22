@@ -12,21 +12,21 @@ const homeRoute: Route = {
 const aboutRoute: Route = {
 
     text: 'ABOUT',
-    path: '/'
+    path: '/about'
 
 }
 
 const articlesRoute: Route = {
 
     text: 'BLOG',
-    path: '/articles'
+    path: '/blog'
 
 }
 
 const contactRoute: Route = {
 
     text: 'CONTACT',
-    path: '/'
+    path: '/contact'
 
 }
 

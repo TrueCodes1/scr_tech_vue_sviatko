@@ -6,23 +6,6 @@
 
     <main class="mx-auto d-flex flex-column align-items-center justify-content-start">
 
-        <div class="top-gallery d-flex flex-row align-items-stretch justify-content-stretch">
-
-            <div class="card gallery-card w-25 d-flex flex-column align-items-center justify-content-center" v-for="image in topGalleryFetched" :key="image.id">
-            
-                <img :src="image.imgs.regular" class="card-img" alt="...">
-                <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end pb-5">
-                    <p class="card-type">{{ image.type }}</p>
-                    <h5 class="card-title">{{ image.name }}}</h5>
-                    <a href="#" class="gallery-btn btn btn-outline-light">
-                        Read More
-                    </a>
-                </div>
-
-            </div>
-
-        </div>
-
         <div class="articles-list mx-auto d-flex felx-row align-items-start justify-content-stretch">
     
             <div class="column" v-for="column in columnsBlogsFetched" :key="column"> 
@@ -40,7 +23,7 @@
                         <p class="card-text">
                             {{ blog.text }}
                         </p>
-                        <a href="#" class="btn">
+                        <a @click="abc(blog.id)" class="btn">
                             Read More
                         </a>
                     </div>
@@ -66,7 +49,7 @@
     //@ts-ignore
     import articles from '../jsons/articles.json'
     //@ts-ignore
-    import gallery from '../jsons/gallery.json'
+    import currentArticle from '../functions/currentArticle.js'
 
     export default defineComponent({
         name: 'ArticlesView',
@@ -78,19 +61,11 @@
         setup() {
 
             const columnsBlogsFetched: any = ref(null)
-            const topGalleryFetched: any = ref(null)
 
             let columnsBlogs: any = {
                 '1': {},
                 '2': {},
                 '3': {}
-            }
-            
-            let topGallery: any = {
-                0: {},
-                1: {},
-                2: {},
-                3: {}
             }
             
             let UNSPLASH_ENDPOINT = new URL(`https://api.unsplash.com/photos/?client_id=${UNSPLASH_CLIENT_ID}`)
@@ -238,47 +213,37 @@
                 
                 })
 
-            fetch(UNSPLASH_ENDPOINT.toString())
-                .then(response => { return response.json() })
-                .then(images => {
-
-                    let counter = 0
-
-                    images.forEach((image: any) => {
-
-                        if (counter < 4) {
-
-                            gallery[counter]['imgs'] = image['urls'];
-                            gallery[counter]['id'] = image['id'];
-
-                            topGallery[counter] = gallery[counter]
-                            
-                            counter++
-
-                        }
-                        
-                    })
-
-                })
-                .then(() => {
-
-                    topGalleryFetched.value = topGallery
-
-                })
-            
-
+            const openArticle = computed(() => {
+                console.log('workiiing')
+                console.log(articles)
+            })
 
             return {
 
                 RoutesProp,
-                columnsBlogsFetched,
-                topGalleryFetched
+                columnsBlogsFetched
+
+            }
+
+        },
+        methods: {
+
+            abc(specificId: string) {
+
+                let specificArticle = articles.filter((article: any) => {
+                    return article.id == specificId 
+                })[0]
+
+                localStorage.setItem('currentArticle', JSON.stringify(specificArticle))
+
+                window.location.assign(`/blog/${specificId}`)
 
             }
 
         }
     
     })
+
 
 </script>
 
