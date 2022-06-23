@@ -2,13 +2,16 @@
     
         <div class="top-gallery flex-row align-items-stretch justify-content-stretch">
 
+            <!-- FOR EACH IMAGE TO BE USED IN THE TOP GALLERY SPECIFIC CARD IS CREATED  -->
             <div class="card gallery-card d-flex flex-column align-items-center justify-content-center w-25" v-for="image in topGalleryFetched" :key="image.id">
             
-                <!-- <img :src="image.imgs.regular" class="card-img-gallery" alt="..."> -->
+                <!-- THERE IS AN OVERLAY WHICH HAS THE SPECIFIC IMAGE AS A BACKGROUND IMAGE (TO MAKE
+                IT RESPONSIVE) AND THERE ARE TYPE, HEADING (NAME) AND ONCLICK FUNCTION TO OPEN
+                THE ARTICLE WITH ITS "ID" AS THE ONLY ARGUMENT -->
                 <div class="card-img-overlay d-flex flex-column align-items-center justify-content-end pb-5" :style="`background-image: url(${image.imgs.regular})`">
                     <p class="card-type">{{ image.type }}</p>
                     <h5 class="card-title">{{ image.name }}</h5>
-                    <a href="#" class="gallery-btn btn btn-outline-light">
+                    <a v-on:click="openArticle?.(image?.id)" class="gallery-btn btn btn-outline-light">
                         Read More
                     </a>
                 </div>
@@ -28,7 +31,8 @@
         name: 'TopGallery',
         props: {
 
-            topGalleryFetched: Object
+            topGalleryFetched: Object,
+            openArticle: Function
 
         }
 
@@ -53,6 +57,7 @@
             width: 100%
             min-height: 300px
             max-height: 500px
+            margin-top: 120px
             
         .gallery-card
             min-height: 100%

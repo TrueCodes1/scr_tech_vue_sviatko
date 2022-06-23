@@ -21,6 +21,12 @@
     // IMPORTING OBJECTS
     import RoutesProp from '../interfaces/Routes'
 
+    // IMPORTING FUNCTIONS
+    import CreateCurrentArticle from '../interfaces/CreateCurrentArticle'
+    
+    // IMPORTING INTERFACES
+    import type CurrentArticle from '../interfaces/CurrentArticleInterface'
+
     export default defineComponent({
         name: 'SpecificArticleView',
         components: {
@@ -31,19 +37,20 @@
         },
         setup() {
 
-            let currentArticle: any = localStorage.getItem('currentArticle')
-            currentArticle = JSON.parse(currentArticle)
+            let currentLocation: any = window.location.toString();
+            
+            let id: string = currentLocation.substring(currentLocation.lastIndexOf('/') + 1);
 
-            currentArticle = {
+            let articles: any = localStorage.getItem('articles')
+            articles = JSON.parse(articles)
 
-                name: currentArticle['name'],
-                text: currentArticle['text'],
-                longText: currentArticle['long-text'],
-                id: currentArticle['id'],
-                imgs: currentArticle['imgs'],
-                type: currentArticle['type']
+            let rawArticle: any = articles.filter((article: any) => {
 
-            }
+                return article['id'] == id
+
+            })[0]
+
+            let currentArticle: CurrentArticle = CreateCurrentArticle(rawArticle)
 
             return {
 

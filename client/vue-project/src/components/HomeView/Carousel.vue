@@ -1,12 +1,13 @@
 <template>
     
+        <!-- THE WHOLE CAROUSEL -->
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
 
             <div class="carousel-inner">
 
+                <!-- FOR THE VERY FIRST IMAGE FROM THE WHOLE GALLERY, AN ITEM WITH CLASS
+                "ACTIVE" IS CREATED  -->
                 <div class="carousel-item active" v-for="image in firstFromGallery" :key="image.id" data-bs-interval="10000">
-
-                    <!-- <img :src="image.imgs.regular" class="d-block w-100 carousel-image" alt="..."> -->
 
                     <div class="carousel-caption d-flex" :style="`background-image: url(${image.imgs.regular})`">
 
@@ -17,10 +18,13 @@
 
                 </div>
 
+                <!-- FOR ALL THE REST IMAGES, SPECIFIC ITEM IS CREATED BUT THIS TIME WITHOUT CLASS "ACTIVE" -->
                 <div class="carousel-item" v-for="image in topGalleryFetchedMobile" :key="image.id" data-bs-interval="2000">
 
                     <!-- <img :src="image.imgs.regular" class="d-block w-100 carousel-image" alt="..."> -->
 
+                    <!-- EACH ITEM HAS A CAPTION SECTION WHICH HAS THE IMAGE AS A BACKGROUND IMAGE (TO MAKE IT RESPONSIVE) 
+                    WITH ITS HEADING (NAME) AND TEXT -->
                     <div class="carousel-caption d-flex" :style="`background-image: url(${image.imgs.regular})`">
 
                         <h5>{{ image.name }}</h5>
@@ -32,6 +36,8 @@
 
             </div>
 
+            <!-- BUTTONS TO CONTROL THE CAROUSEL, BUT IS WORKS FINE EVEN WITHOUT THEM 
+            AS THERE IS AN INTERVAL IN WHICH THE SLIDES MOVE ON -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
 
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -1,11 +1,17 @@
 <template>
 
+        <!-- THE WHOLE ARTICLES LIST -->
         <div class="articles-list mx-auto d-flex">
     
+            <!-- FOR EACH OF THE 3 COLUMNS, THAT WERE GENERATED, THERE IS A SINGLE COLUMN THAT IS 
+            LOADED IN THE TEMPLATE -->
             <div class="column" v-for="column in columnsBlogsFetched" :key="column"> 
                 
+                <!-- FOR EACH OF THE BLOGS OF THE SPECIFIC COLUMN, THERE IS A CARD CREATED
+                WITH THE IMAGE AT THE TOP, AND THEN THE CARD BODY (BLOG TYPE, HEADING (NAME), TEXT 
+                AND "READ MORE" BUTTON) -->
                 <div class="card" v-for="blog in column" :key="blog.id"> 
-                    <img class="card-img-top" alt="" :src="blog.imgs.regular" loading="lazy">
+                    <img class="card-img-top" :alt="blog.name" :src="blog.imgs.regular" loading="lazy">
                     <div class="card-body d-flex flex-column align-items-center justify-content-start">
                         <p class="card-type">
                             {{ blog.type }}
